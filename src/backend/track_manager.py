@@ -7,6 +7,11 @@ fragment = ndarray
 fragment_list = List[fragment]
 track = ndarray
 
+#
+# Constantes
+#
+
+
 
 class TrackManager(object):
     def __init__(self):
@@ -32,5 +37,8 @@ class TrackManager(object):
     def get_fragment_list(self) -> fragment_list:
         print("TrackManager: get_fragment_list")
         return []
+
+    def set_fragent_list_and_assemble(self, fragment_list):
+        print("TrackManager: set_fragent_list_and_assemble")
 
 if __name__ == '__main__':
