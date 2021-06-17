@@ -10,4 +10,10 @@ def dist(vec)->float:
 
 dist([1,2,3])
 
+###################################
 
+
+from scipy import spatial
+A=[[1,1],[0,1],[1,0]]
+tree = spatial.KDTree(A)
+tree.query([0,0])
