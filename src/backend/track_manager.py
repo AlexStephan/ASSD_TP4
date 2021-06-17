@@ -18,7 +18,7 @@ class TrackManager(object):
 
     def get_track(self) -> track:
         print("TrackManager: get_track")
-        return track([0])
+        return self.trck
 
     def open_sound_file(self, path: str):
         print("TrackManager: open_sound_file")
