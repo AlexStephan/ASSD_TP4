@@ -12,8 +12,8 @@ track = ndarray
 ##############
 # Constantes #
 ##############
-ovrlp = 1
-N = 3
+ovrlp = 512
+N = 1024
 
 
 
@@ -53,8 +53,8 @@ class TrackManager(object):
             self.fragment_list[i] = Window.blackman(self.fragment_list[i])
         return self.fragment_list
 
-    def set_fragent_list_and_assemble(self, fragment_list):
-        print("TrackManager: set_fragent_list_and_assemble")
+    def set_fragment_list_and_assemble(self, fragment_list):
+        print("TrackManager: set_fragment_list_and_assemble")
 
 
 class Window(object):
