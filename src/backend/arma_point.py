@@ -1,10 +1,12 @@
 from numpy import ndarray
 
+from src.backend.track_manager import fragment,fragment_list,track
+
 class ARMAPoint(object):
     def __init__(self):
         print("ARMAPoint created")
 
-    def set_fragment_and_calculate_arma(self, fragment):
+    def set_fragment_and_calculate_arma(self, fragm : fragment):
         print("ARMAPoint set")
 
     def get_fundamental_frequency(self) -> float:
@@ -14,6 +16,6 @@ class ARMAPoint(object):
     def synthesize_from_fundamental_frequency(self, fundamental: float):
         print("ARMAPoint synthesize")
 
-    def get_synthesized_fragment(self) -> ndarray:
+    def get_synthesized_fragment(self) -> fragment:
         print("ARMAPoint get synthesize fragment")
-        return ndarray([0])
+        return fragment([0])
