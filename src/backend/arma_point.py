@@ -1,3 +1,4 @@
+from numpy import ndarray
 
 class ARMAPoint(object):
     def __init__(self):
@@ -7,5 +8,12 @@ class ARMAPoint(object):
         print("ARMAPoint set")
 
     def get_fundamental_frequency(self) -> float:
-        print("get_fundamental_frequency")
+        print("ARMAPoint get_fundamental_frequency")
         return 0
+
+    def synthesize_from_fundamental_frequency(self, fundamental: float):
+        print("ARMAPoint synthesize")
+
+    def get_synthesized_fragment(self) -> ndarray:
+        print("ARMAPoint get synthesize fragment")
+        return ndarray([0])
