@@ -1,6 +1,7 @@
 from numpy import ndarray
 from typing import List
-
+import soundfile as sf
+from scipy.io import wavfile
 
 fragment = ndarray
 fragment_list = List[fragment]
@@ -22,7 +23,8 @@ class TrackManager(object):
 
     def open_sound_file(self, path: str):
         print("TrackManager: open_sound_file")
-        self.set_track(track([0]))
+        samplerate, data = wavfile.read(path)
+        self.set_track(data)
 
     def save_sound_file(self, path: str):
         print("TrackManager: save_sound_file")
@@ -30,3 +32,5 @@ class TrackManager(object):
     def get_fragment_list(self) -> fragment_list:
         print("TrackManager: get_fragment_list")
         return []
+
+if __name__ == '__main__':
