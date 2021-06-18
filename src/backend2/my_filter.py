@@ -28,7 +28,7 @@ class MyFilter(object):
 
             self.angles = []
             for p in self.poles:
-                self.angles.append(np.angle(p))
+                self.angles.append(np.abs(np.angle(p)))
             self.angles.sort()
 
     def get_coefficients(self) -> coeff:
