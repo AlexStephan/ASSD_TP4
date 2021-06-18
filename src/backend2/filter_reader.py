@@ -31,3 +31,4 @@ if __name__ == '__main__':
     A = FilterReader()
     A.open_file(path)
     print(A.get_filters())
+    print(type({1,2}))
