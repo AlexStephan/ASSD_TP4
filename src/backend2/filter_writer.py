@@ -12,7 +12,8 @@ class FilterWriter(object):
         try:
             with open(path, 'w', newline='') as csvfile:
                 writer = csv.writer(csvfile)
-                writer.writerows(filters)
+                for f in filters:
+                    writer.writerow(f)
         except:
             print("Oops, can't create file")
             a = False

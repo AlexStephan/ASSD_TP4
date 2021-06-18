@@ -8,7 +8,7 @@ coeff = List
 
 class MyFilter(object):
     def __init__(self, coefficients: coeff = None):
-        print("MyFilter created")
+        #print("MyFilter created")
         self.coefficients = None
         self.zeros = None
         self.poles = None  # La estrella del show

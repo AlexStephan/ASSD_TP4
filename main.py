@@ -5,9 +5,9 @@ from src.backend2.filter_space import FilterSpace
 
 
 def begin():
-    source_path = ""
-    target_path = ""
-    save_path = ""
+    source_path = ".\\resources\\csv\\AH_aleX.csv"
+    target_path = ".\\resources\\csv\\AH_mATI.csv"
+    save_path = ".\\resources\\csv\\MATALEQUIS.csv"
 
     filter_reader = FilterReader()
     if filter_reader.open_file(source_path):
@@ -32,16 +32,26 @@ def begin():
         return
 
     my_target_filters = []
-    for filter_coefficients in target_filter_collection:
+    for i,filter_coefficients in enumerate(target_filter_collection):
         new_filter = MyFilter(filter_coefficients)
         my_target_filters.append(new_filter)
+        if i%100==0:
+            print("Done: {}".format(i))
 
     my_results = []
-    for target_filter in my_target_filters:
+    for i,target_filter in enumerate(my_target_filters):
         my_results.append(filter_space.get_closest_filter(target_filter))
+        if i%100==0:
+            print("Done: {}".format(i))
+
+    ready_for_print = []
+    for i,result in enumerate(my_results):
+        ready_for_print.append(result.get_coefficients())
+        if i%100==0:
+            print("Done: {}".format(i))
 
     filter_writer = FilterWriter()
-    if filter_writer.save_file(save_path,my_results):
+    if filter_writer.save_file(save_path,ready_for_print):
         print("MAJOR SUCCESS!!!")
     else:
         print("a minor inconvenience")
