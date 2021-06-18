@@ -22,8 +22,8 @@ class MyFilter(object):
         self.coefficients = coefficients
         if self.coefficients is not None:
             self.degree = len(self.coefficients)
-            denominator = [-1]
-            denominator.extend(self.coefficients)
+            denominator = [1]
+            denominator.extend(np.multiply(coefficients, -1))
             self.zeros,self.poles,self.gain = ss.tf2zpk([1],denominator)
 
             self.angles = []
