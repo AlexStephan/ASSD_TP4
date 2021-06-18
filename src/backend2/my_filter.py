@@ -14,9 +14,8 @@ class MyFilter(object):
         self.poles = None  # La estrella del show
         self.gain = None
         self.degree = None
-        self.set_coefficients(coefficients)
-
         self.angles = None
+        self.set_coefficients(coefficients)
 
     def set_coefficients(self, coefficients: coeff):
         self.coefficients = coefficients

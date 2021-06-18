@@ -41,6 +41,12 @@ class FilterSpace(object):
         else:
             return MyFilter()
 
+    def get_closest_filter(self, filt: MyFilter) -> MyFilter:
+        if self.tree is not None:
+            return self.get_filter(self.get_closest_filter_index(filt))
+        else:
+            return MyFilter()
+
     def __apply_position_weight(self, angles: List) -> List:
         weighted = []
         for i,a in enumerate(angles):
