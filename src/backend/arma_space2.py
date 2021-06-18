@@ -1,21 +1,18 @@
 from src.backend.arma_point import ARMAPoint
 from typing import List
 from scipy import spatial
-#A=[[1,1],[0,1],[1,0]]
-#tree = spatial.KDTree(A)
-#tree.query([0,0])
 
+
+#en esta version, se asume que "position" es un arreglo con todos los picos del espectro, con o sin ruido
 
 class ARMASpace(object):
     def __init__(self):
         print("ARMASpace craeated")
         self.pointList = []
-        self.tree = None
 
     def erase_all_points(self):
         print("ARMASpace: all points removed")
         self.pointList = []
-        self.tree = None
 
     def add_point(self, point: ARMAPoint):
         print("ARMASpace: point added")
@@ -25,19 +22,11 @@ class ARMASpace(object):
         for p in list_of_points:
             self.add_point(p)
 
-    def create_tree_with_added_points(self):
-        if self.pointList == []:
-            self.tree = None
-        else:
-            positions = []
-            for p in self.pointList:
-                positions.append(p.get_position())
-            self.tree = spatial.KDTree(positions)
-
     def get_closest_point(self, point: ARMAPoint) -> ARMAPoint:
         print("ARMASpace: returned closest point")
-        if self.tree != None:
-            return self.pointList[self.tree.query(point.get_position())[1]]
+        if self.pointList != []:
+            #WIP
+            print("WIP")
         else:
             return ARMAPoint()
     # todo: agregarle interpolación para puntos intermedios
