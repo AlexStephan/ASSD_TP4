@@ -2,12 +2,27 @@ from src.backend2.my_filter import MyFilter
 from typing import List
 from scipy import spatial
 import numpy as np
+from enum import Enum
+
+
+class Mode(Enum):
+    Angles = 1
+    Poles = 2
+
+
+def separate(v: List)->List:
+    rta = []
+    for i in v:
+        rta.extend([np.real(i),np.imag(i)])
+    return rta
+
 
 class FilterSpace(object):
     def __init__(self):
         print("FilterSpace created")
         self.filter_list = []
         self.tree = None
+        self.mode = Mode.Poles
 
     def erase_all_filters(self):
         self.filter_list = []
@@ -24,14 +39,18 @@ class FilterSpace(object):
         if self.filter_list == []:
             self.tree = None
         else:
-            positions = []
-            for f in self.filter_list:
-                positions.append(self.__apply_position_weight(f.get_angles()))
-            self.tree = spatial.KDTree(positions)
+            if self.mode == Mode.Poles:
+                positions = []
+                for f in self.filter_list:
+                    positions.append(separate(f.get_poles()))
+                self.tree = spatial.KDTree(positions)
+            elif self.mode == Mode.Angles:
+                positions = []
 
     def get_closest_filter_index(self, filt: MyFilter) -> int:
         if self.tree is not None:
-            return self.tree.query(filt.get_angles())[1]
+            if self.mode == Mode.Poles:
+                return self.tree.query(separate(filt.get_poles()))[1]
         else:
             return -1
 
@@ -47,11 +66,3 @@ class FilterSpace(object):
         else:
             return MyFilter()
 
-    def __apply_position_weight(self, angles: List) -> List:
-        weighted = []
-        for i,a in enumerate(angles):
-            weighted.append(a*self.__weight(i))
-        return weighted
-
-    def __weight(self, i: int) -> float:
-        return np.power(0.6, i)

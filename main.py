@@ -5,9 +5,9 @@ from src.backend2.filter_space import FilterSpace
 
 
 def begin():
-    source_path = ".\\resources\\csv\\AH_aleX.csv"
-    target_path = ".\\resources\\csv\\AH_mATI.csv"
-    save_path = ".\\resources\\csv\\MATALEQUIS.csv"
+    source_path = ".\\resources\\csv\\mATI_sample.csv"
+    target_path = ".\\resources\\csv\\ale_speaker.csv"
+    save_path = ".\\resources\\csv\\mati_y_ale.csv"
 
     filter_reader = FilterReader()
     if filter_reader.open_file(source_path):

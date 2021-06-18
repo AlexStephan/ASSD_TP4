@@ -35,3 +35,9 @@ class MyFilter(object):
 
     def get_angles(self) -> List:
         return self.angles
+
+    def get_zeros(self) -> List:
+        return self.zeros
+
+    def get_poles(self) -> List:
+        return self.poles
